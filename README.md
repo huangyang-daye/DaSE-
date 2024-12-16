@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/90281ded-3689-493c-8261-56a35b91cb96)# 使用PageRank对MapReduce和Spark架构的性能对比分析
+# 使用PageRank对MapReduce和Spark架构的性能对比分析
 
 小组成员及分工：
 - 黄杨（实验设计，环境搭建，执行实验 25%）
