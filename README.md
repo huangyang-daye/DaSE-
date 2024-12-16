@@ -1,4 +1,4 @@
-# 使用PageRank对MapReduce和Spark架构的性能对比分析
+![image](https://github.com/user-attachments/assets/90281ded-3689-493c-8261-56a35b91cb96)# 使用PageRank对MapReduce和Spark架构的性能对比分析
 
 小组成员及分工：
 - 黄杨（实验设计，环境搭建，执行实验 25%）
@@ -127,6 +127,8 @@ hadoop jar ~/pagerankMR.jar  web_Google.txt mapreduce/14 20 875713 \
 这是程序在spark下运行的cpu利用率，内存利用率，和I/O，每个executor分配2G内存
 
 <img src=".\spark\logs\log_spark_2G.png" style="zoom:33%;" />
+
+通过对比分析spark在分配不同内存情况下的训练数据我们发现，内存大小的改变并没有对训练的时间产生非常大的变化，这可能是由于数据量不够大，也有可能实际的情况确实如此。
 
 ## 四.实验反思
 本次实验分析了PageRank算法在Hadoop和Spark架构下的性能差异，经过本次实验，我们对Hadoop，Map Reduce和Spark架构有了进一步的认识和理解。
