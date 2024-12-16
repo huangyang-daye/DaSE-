@@ -102,13 +102,14 @@ hadoop jar ~/pagerankMR.jar  web_Google.txt mapreduce/14 20 875713 \
 
 3. 除此之外，我们在每次运行程序前都开启了对datanode的监控，每隔1秒取一次当前时刻的数据，绘制成了图表：
 
-   这是程序在mapreduce下运行的cpu利用率，内存利用率，和I/O
-
+这是程序在mapreduce下运行的cpu利用率，内存利用率，和I/O，每个executor分配512M内存
 <img src=".\hadoop\logs\log_hadoop_512M.png" style="zoom:33%;" />
 
 这是程序在spark下运行的cpu利用率，内存利用率，和I/O，每个executor分配512MB内存
 
 <img src=".\spark\logs\log_spark_512M.png" style="zoom:33%;" />
+
+经过对比发现，
 
 这是程序在spark下运行的cpu利用率，内存利用率，和I/O，每个executor分配1G内存
 
@@ -118,7 +119,6 @@ hadoop jar ~/pagerankMR.jar  web_Google.txt mapreduce/14 20 875713 \
 
 <img src=".\spark\logs\log_spark_2G.png" style="zoom:33%;" />
 
-根据观察发现...........
 
 spark任务中的DAG图
 
