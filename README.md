@@ -1,5 +1,11 @@
 # 使用PageRank对MapReduce和Spark架构的性能对比分析
 
+小组成员及分工：
+- 黄杨（实验设计，环境搭建，执行实验 25%）
+- 吕策（实验设计，记录数据，处理数据 25%）
+- 张晏玮（实验设计，数据处理，汇报 25%）
+- 姚之远（实验设计，数据处理，PPT和文档写作 25%）
+
 ## 一.实验目标
 
 - 使用MapReduce和Spark对数据进行PageRank算法的运算
@@ -109,7 +115,10 @@ hadoop jar ~/pagerankMR.jar  web_Google.txt mapreduce/14 20 875713 \
 
 <img src=".\spark\logs\log_spark_512M.png" style="zoom:33%;" />
 
-经过对比发现，
+对比前两个图的kB_wr/s的数据可以看到，由于mapreduce对数据的训练任务是在磁盘上执行的，在执行任务的时候产生了大量的写的过程，这两点导致了训练时间的大大增加；
+
+而spark训练的时候几乎全程在内存中，并且由于spark框架的DAG计算模型可以在大多数情况下减少shuffle的次数，因此当没有涉及到节点之间的数据交换的时候，数据计算的任务都会在内存当中完成，无需写到磁盘中，所以spark的训练时间远少于mapreduce。
+
 
 这是程序在spark下运行的cpu利用率，内存利用率，和I/O，每个executor分配1G内存
 
@@ -119,11 +128,7 @@ hadoop jar ~/pagerankMR.jar  web_Google.txt mapreduce/14 20 875713 \
 
 <img src=".\spark\logs\log_spark_2G.png" style="zoom:33%;" />
 
+## 四.实验反思
+本次实验分析了PageRank算法在Hadoop和Spark架构下的性能差异，经过本次实验，我们对Hadoop，Map Reduce和Spark架构有了进一步的认识和理解。
 
-spark任务中的DAG图
-
-<img src="C:\Users\Lenovo\OneDrive\Desktop\pagerank\imgs\spark_job_DAG_01_1.png" style="zoom:33%;" />
-
-<img src="C:\Users\Lenovo\OneDrive\Desktop\pagerank\imgs\spark_job_DAG_01_2.png" style="zoom:33%;" />
-
-<img src="C:\Users\Lenovo\OneDrive\Desktop\pagerank\imgs\spark_timeline_01.png" style="zoom: 33%;" />
+但同时，由于实验环境不完善（如内核数不够、数据量太小等）、实验设置不全面、对架构理解的不够深入等多方面的原因，实验并没有完全得到我们想要的结果，而且实验出现了一些我们没有办法完全理解，没有办法解释明白的现象，因此我们认为，我们的实验并不是完全成功的。可能还需要更进一步的深入了解才能够完全得到我们想要的结果，这点还有待改进和完善。
