@@ -96,7 +96,7 @@ hadoop jar ~/pagerankMR.jar  web_Google.txt mapreduce/14 20 875713 \
 
 显然，尽管我们知道spark处理任务的速度很快，但在几百甚至几十毫秒以内完成一轮迭代显然是不现实也不正常的，在Job UI中的stages页面所观察到的也是如下所示的运行情况：
 
-<img src=".\imgs\spark_jobs.png" alt="image-20241215195119535" style="zoom:33%;" />
+<img src=".\imgs\spark_job_result_512M.png" alt="image-20241215195119535" style="zoom:33%;" />
 
 可以看到每个任务的运行时间(Duration)，尽管这并不是我们想要的那种每轮迭代的时间，而是mapToPair和flatmapToPair任务运行的时间，但这也能大致推测出每轮迭代的运行情况了，很显然在spark中，每轮迭代的时间被缩减到了十几秒，远远快于mapreduce的几十秒。最终程序也在三至四分钟完成了，运行时间远小于mapreduce的十五分钟左右。
 
